@@ -8,7 +8,26 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    meta: {
+      layout: 'default'
+    },
     component: Home
+  },
+  {
+    path: '/product/:id',
+    name: 'Item',
+    meta: {
+      layout: 'default'
+    },
+    component: () => import('../views/Item')
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    meeta: {
+      layout: 'default'
+    },
+    component: () => import('../views/Cart')
   },
   {
     path: '/about',

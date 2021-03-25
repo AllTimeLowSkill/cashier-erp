@@ -1,18 +1,39 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <Card v-for="(item, idx) in products" :key="idx" :product="item" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { mapGetters, mapActions } from 'vuex'
 
+import Card from '../components/Card'
 export default {
   name: 'Home',
+  computed: {
+    ...mapGetters({
+      products: 'products',
+    })
+  },
+  mounted(){
+    this.fetchProducts()
+  },
+  methods: {
+    ...mapActions({
+      fetchProducts: 'fetchProducts'
+    })
+  },
   components: {
-    HelloWorld
+    Card
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .home{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem 2rem;
+  }
+</style>
